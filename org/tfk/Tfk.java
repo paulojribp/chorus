@@ -1,4 +1,3 @@
-
 /**
  * The main class Tfk.
  *
@@ -8,7 +7,7 @@
 public class Tfk {
 	/**
 	 * Método que inicializa o programa.
-	 * Ele simplemente imprime uma mensagem.
+	 * Ele simplesmente imprime uma mensagem.
 	 * @param String[] args
 	**/
 	public static void main(String[] args){
