@@ -1,3 +1,5 @@
+package org.tfk;
+
 /**
  * The main class Tfk.
  *
@@ -14,6 +16,7 @@ public class Tfk {
                 System.out.println("Ao infinito e além");
                 System.out.println("Javatfk");
                 System.out.println("FidiBequi");
+                System.out.println("Carinha feliz :)");
         }
 
 }
