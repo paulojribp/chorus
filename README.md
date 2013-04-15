@@ -1,4 +1,4 @@
-peep
+Chorus
 ====
 
-Peep a tweet alternative
+A alternative tweet
