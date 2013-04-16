@@ -268,6 +268,10 @@ a:focus {
   *zoom: 1;
 }
 
+.row-timeline{
+	
+}
+
 .row:before,
 .row:after {
   display: table;
@@ -326,6 +330,15 @@ a:focus {
 
 .span4 {
   width: 300px;
+}
+
+.span-timeline{
+	width: 600px;
+	color: inherit;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
 }
 
 .span3 {
