@@ -80,6 +80,7 @@ public class TimeLineServiceImpl implements TimeLineService {
 		usuario = new Usuario("Chorao");
 		chorus.setUsuario(usuario);
 		publicarNaTimeLine(chorus);
+		
 		List<Chorus> chorinhos = mapChorusByUser.get(usuario);
 		return chorinhos;
 	}

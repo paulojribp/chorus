@@ -35,49 +35,80 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
                     <a class="brand" href="#">Chorus</a>
                     <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="#">Profile</a></li>
-                            <li><a href="precos">Echo</a></li>
-                            
-                        </ul>
                         <form class="navbar-form pull-right">
                             <input class="span2" type="text" placeholder="Email">
                             <input class="span2" type="password" placeholder="Password">
-                            <button type="submit" class="btn">Sign in</button>
+                            <button type="submit" class="btn">Acessar</button>
                         </form>
-                    </div><!--/.nav-collapse -->
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="container">
-            <!-- Main hero unit for a primary marketing message or call to action -->
-            <div class="hero-unit">
-                <h1>Chorus</h1>
-                <p>Seu novo twitter :D</p>
-                <p><a class="btn btn-primary btn-large">Saiba mais &raquo;</a></p>
-            </div>
-
-            <!-- Example row of columns -->
-            <c:forEach var="chorus" items="${chorinhos}">
-                <div class="span-timeline">
-                    <p>${chorus.mensagem}</p>
-                </div>
-            </c:forEach>
+            <div class="container-fluid">
+			  <div class="row-fluid">
+			    <div class="span3">
+			      <ul class="nav nav-tabs nav-stacked">
+  					<li><a href="#" class="">Chorinhos<i class="icon-chevron-right pull-right"></i></a></li>
+  					<li><a href="#" class="">Seguindo<i class="icon-chevron-right pull-right"></i></a></li>
+  					<li><a href="#" class="">Seguidores<i class="icon-chevron-right pull-right"></i></a></li>
+				  </ul>
+			    </div>
+			    <div class="span8">
+			    	<div class="well">
+						Dados do Usuario:
+			    	</div>
+			    	<div class="well">
+			    		<legend>Chorinhos</legend>
+			    		<ul class="media-list">
+			    			<c:forEach var="chorus" items="${chorinhos}">
+					    		<li class="media">
+								    <a class="pull-left" href="#">
+								      <img class="media-object" data-src="../images/thumb64x64.png">
+								    </a>
+								    <div class="media-body">
+								    	<h4 class="media-heading">${chorus.usuario.login}</h4>
+								    	<p>${chorus.mensagem}</p>
+								    </div>
+								  </li>
+							 </c:forEach> 
+							 <c:forEach var="chorus" items="${chorinhos}">
+					    		<li class="media">
+								    <a class="pull-left" href="#">
+								      <img class="media-object" data-src="../images/thumb64x64.png">
+								    </a>
+								    <div class="media-body">
+								    	<h4 class="media-heading">${chorus.usuario.login}</h4>
+								    	<p>${chorus.mensagem}</p>
+								    </div>
+								  </li>
+							 </c:forEach> 
+							 <c:forEach var="chorus" items="${chorinhos}">
+					    		<li class="media">
+								    <a class="pull-left" href="#">
+								      <img class="media-object" data-src="../images/thumb64x64.png">
+								    </a>
+								    <div class="media-body">
+								    	<h4 class="media-heading">${chorus.usuario.login}</h4>
+								    	<p>${chorus.mensagem}</p>
+								    </div>
+								  </li>
+							 </c:forEach> 
+			    		</ul>
+			    	</div>
+			    </div>
+			  </div>
+			</div>
             <hr>
 
             <footer>
                 <p>&copy; Company 2012</p>
             </footer>
 
-        </div> <!-- /container -->
+        </div> 
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
