@@ -2,10 +2,12 @@ package com.chorus.dao;
 
 import java.util.List;
 
-import org.hibernate.classic.Session;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
 
+import com.chorus.entity.Chorus;
 import com.chorus.model.Timeline;
 
 
@@ -13,15 +15,20 @@ import com.chorus.model.Timeline;
 public class TimelineDao implements Timelinegeneric{
 
 	
-//   private final Session session;
+	private final Session session;
 	
-	public void add(Timeline timeline) {
+	public TimelineDao(Session session) {
+		this.session = session;
 	}
 	
-	public List<Timeline> searchSimilarTitle(String title) {
-		return null;
+	public void add(Chorus chorus) {
+		this.session.save(chorus);
 	}
 	
+	public List<Timeline> searchSimilarTitle(String mensagem) {
+		return session.createCriteria(Timeline.class).add(
+				Restrictions.ilike("mensagem", "%" + mensagem + "%")).list();
+	}
 	
 	
 }

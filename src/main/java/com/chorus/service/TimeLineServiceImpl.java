@@ -13,8 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.ioc.Component;
 
+
+import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
@@ -28,9 +32,14 @@ import com.chorus.entity.Usuario;
  */
 @Component
 public class TimeLineServiceImpl implements TimeLineService {
+	
+	private TimelineDao dao;
 
 	private static Map<Usuario, List<Chorus>> mapChorusByUser = new HashMap<Usuario, List<Chorus>>();
-	
+	public TimeLineServiceImpl(TimelineDao dao) {
+		this.dao = dao;
+	}
+
 	
 	/* (non-Javadoc)
 	 * @see com.chorus.service.TimeLineService#publicarNaTimeLine(com.chorus.entity.Chorus)
@@ -44,20 +53,23 @@ public class TimeLineServiceImpl implements TimeLineService {
 		
 		String mensagem = chorus.getMensagem();
 		
-		if(mensagem == null || mensagem.isEmpty()){
+/*		if(mensagem == null || mensagem.isEmpty()){
 			throw new Exception("Mensagem nao pode ser vazia.");
 		}
 
 		if(mensagem.length() > 144){
 			throw new Exception("Mensagem nao pode exceder 144 caracteres.");
-		}
+		}*/
 		
-		List<Chorus> chorinhos = mapChorusByUser.get(usuario);
+/*		List<Chorus> chorinhos = mapChorusByUser.get(usuario);
 		if(chorinhos == null){
 			chorinhos = new ArrayList<Chorus>();
 		}
+		
+
 		chorinhos.add(chorus);
-		mapChorusByUser.put(usuario, chorinhos);
+		mapChorusByUser.put(usuario, chorinhos);*/
+		this.dao.add(chorus);
 		return chorus;
 	}
 

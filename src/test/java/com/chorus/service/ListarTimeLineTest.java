@@ -8,13 +8,15 @@
  */
 package com.chorus.service;
 
-import java.util.List;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 
-import static junit.framework.Assert.*;
+import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
@@ -29,10 +31,12 @@ import com.chorus.entity.Usuario;
 public class ListarTimeLineTest {
 	
 	private static TimeLineService	service;
+	
+	private static TimelineDao dao;
 
 	@BeforeClass
 	public static void beforeClass() {
-		service = new TimeLineServiceImpl();
+		service = new TimeLineServiceImpl(dao);
 	}
 	
 	@Test(expected=Exception.class)

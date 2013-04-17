@@ -24,6 +24,20 @@
         <link rel="stylesheet" href="../css/bootstrap-responsive.min.css">
 
         <script src="../js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="../js/vendor/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript">
+			$('#chorinho').keypress(function(event){
+				contador = parseInt($('#contador_chorinho').text());
+					if(event.which==8 && contador <= 140){
+						$('#contador_chorinho').text(contador+1);
+					}else{
+						$('#contador_chorinho').text(contador-1);
+						if(contador== 0) {
+							alert('perdeu playboy!!!');
+						}
+					}
+			});
+		</script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -93,7 +107,8 @@
 			    <h3 id="myModalLabel">Escrevendo chorinho</h3>
 			  </div>
 			  <div class="modal-body">
-			    <p><textarea rows="3" class="input-block-level"></textarea></p>
+			    <p><textarea rows="3" class="input-block-level" id="chorinho"></textarea></p>
+			    <p><span class="label label-info pull-right" id="contador_chorinho">140</span></p>
 			  </div>
 			  <div class="modal-footer">
 			    <button class="btn btn-primary">Enviar</button>
