@@ -59,34 +59,13 @@
 			    </div>
 			    <div class="span8">
 			    	<div class="well">
+			    	<span class="pull-right"><a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Enviar chorinho</a></span>
 						Dados do Usuario:
 			    	</div>
 			    	<div class="well">
 			    		<legend>Chorinhos</legend>
 			    		<ul class="media-list">
 			    			<c:forEach var="chorus" items="${chorinhos}">
-					    		<li class="media">
-								    <a class="pull-left" href="#">
-								      <img class="media-object" data-src="../images/thumb64x64.png">
-								    </a>
-								    <div class="media-body">
-								    	<h4 class="media-heading">${chorus.usuario.login}</h4>
-								    	<p>${chorus.mensagem}</p>
-								    </div>
-								  </li>
-							 </c:forEach> 
-							 <c:forEach var="chorus" items="${chorinhos}">
-					    		<li class="media">
-								    <a class="pull-left" href="#">
-								      <img class="media-object" data-src="../images/thumb64x64.png">
-								    </a>
-								    <div class="media-body">
-								    	<h4 class="media-heading">${chorus.usuario.login}</h4>
-								    	<p>${chorus.mensagem}</p>
-								    </div>
-								  </li>
-							 </c:forEach> 
-							 <c:forEach var="chorus" items="${chorinhos}">
 					    		<li class="media">
 								    <a class="pull-left" href="#">
 								      <img class="media-object" data-src="../images/thumb64x64.png">
@@ -107,6 +86,19 @@
             <footer>
                 <p>&copy; Company 2012</p>
             </footer>
+			<!-- Modal -->
+			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    <h3 id="myModalLabel">Escrevendo chorinho</h3>
+			  </div>
+			  <div class="modal-body">
+			    <p><textarea rows="3" class="input-block-level"></textarea></p>
+			  </div>
+			  <div class="modal-footer">
+			    <button class="btn btn-primary">Enviar</button>
+			  </div>
+			</div>
 
         </div> 
 
