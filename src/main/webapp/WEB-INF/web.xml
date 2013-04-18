@@ -4,6 +4,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	<display-name>Chorus</display-name>
+	
+	<context-param>
+        <param-name>br.com.caelum.vraptor.packages</param-name>
+        <param-value>br.com.caelum.vraptor.util.hibernate</param-value>
+        <!-- you can add optional component packages here -->
+    </context-param>
+    
 	<filter>
 		<filter-name>vraptor</filter-name>
 		<filter-class>br.com.caelum.vraptor.VRaptor</filter-class>

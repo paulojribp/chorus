@@ -74,7 +74,6 @@
 			    <div class="span8">
 			    	<div class="well">
 			    	<span class="pull-right"><a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Enviar chorinho</a></span>
-						Dados do Usuario:
 			    	</div>
 			    	<div class="well">
 			    		<legend>Chorinhos</legend>
@@ -102,31 +101,26 @@
             </footer>
 			<!-- Modal -->
 			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			  <div class="modal-header">
-			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			    <h3 id="myModalLabel">Escrevendo chorinho</h3>
-			  </div>
-			  <div class="modal-body">
-			    <p><textarea rows="3" class="input-block-level" id="chorinho"></textarea></p>
-			    <p><span class="label label-info pull-right" id="contador_chorinho">140</span></p>
-			  </div>
-			  <div class="modal-footer">
-			    <button class="btn btn-primary">Enviar</button>
-			  </div>
+			  <form action="<c:url value="/timeline/publicar" />" method="post">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">Escrevendo chorinho</h3>
+				  </div>
+				  <div class="modal-body">
+				    <p>Nome<input class="input-block-level" id="nome" name ="chorus.usuario.login"></input></p>
+				  </div>
+				  <div class="modal-body">
+				    <p>Chorus<textarea rows="3" class="input-block-level" id="chorinho" name="chorus.mensagem"></textarea></p>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn btn-primary" type="submit">Enviar</button>
+				  </div>
+			  </form>
 			</div>
 
         </div> 
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-
         <script src="../js/vendor/bootstrap.min.js"></script>
 
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
     </body>
 </html>

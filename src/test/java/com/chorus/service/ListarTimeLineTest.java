@@ -32,11 +32,9 @@ public class ListarTimeLineTest {
 	
 	private static TimeLineService	service;
 	
-	private static TimelineDao dao;
-
 	@BeforeClass
 	public static void beforeClass() {
-		service = new TimeLineServiceImpl(dao);
+		service = new TimeLineServiceImpl();
 	}
 	
 	@Test(expected=Exception.class)

@@ -23,10 +23,9 @@ public class TimelineController {
 		this.result = result;
 	}
 
-	@Path("/publicar")
-	public Chorus publicar(Chorus chorus) throws Exception {
-		return service.publicarNaTimeLine(chorus);
-
+	public void publicar(Chorus chorus) throws Exception {
+		result.include(service.publicarNaTimeLine(chorus));
+		result.redirectTo(TimelineController.class).listarAll();
 	}
 
 	@Path("/listar/{usuario.login}")

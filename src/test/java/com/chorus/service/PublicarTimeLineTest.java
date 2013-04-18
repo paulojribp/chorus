@@ -30,9 +30,9 @@ public class PublicarTimeLineTest {
 	private static TimeLineService	service;
 
 	@BeforeClass
-	/*public static void beforeClass() {
+	public static void beforeClass() {
 		service = new TimeLineServiceImpl();
-	}*/
+	}
 
 	
 	@Test(expected = Exception.class)
