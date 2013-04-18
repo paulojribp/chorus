@@ -2,33 +2,48 @@ package com.chorus.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
 
 import com.chorus.entity.Chorus;
+import com.chorus.entity.Usuario;
 import com.chorus.model.Timeline;
 
 
 @Component
 public class TimelineDao implements Timelinegeneric{
 
+	private EntityManager entityManager;
 	
-	private final Session session;
-	
-	public TimelineDao(Session session) {
-		this.session = session;
+	@PersistenceContext
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 	
 	public void add(Chorus chorus) {
-		this.session.save(chorus);
+		entityManager.persist(chorus);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Timeline> searchSimilarTitle(String mensagem) {
+		Session session = (Session) entityManager.getDelegate();
 		return session.createCriteria(Timeline.class).add(
 				Restrictions.ilike("mensagem", "%" + mensagem + "%")).list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Chorus> loadByUser(Usuario usuario) {
+		String sql = "from Chorus where usuario = ?";
+		Query q = entityManager.createQuery(sql);
+		q.setParameter(0, usuario);
+		
+		return q.getResultList();
+	}
 	
 }

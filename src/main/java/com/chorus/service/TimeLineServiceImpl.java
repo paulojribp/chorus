@@ -8,15 +8,9 @@
  */
 package com.chorus.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.ioc.Component;
-
 
 import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
@@ -34,8 +28,7 @@ import com.chorus.entity.Usuario;
 public class TimeLineServiceImpl implements TimeLineService {
 	
 	private TimelineDao dao;
-
-	private static Map<Usuario, List<Chorus>> mapChorusByUser = new HashMap<Usuario, List<Chorus>>();
+	
 	public TimeLineServiceImpl(TimelineDao dao) {
 		this.dao = dao;
 	}
@@ -86,15 +79,7 @@ public class TimeLineServiceImpl implements TimeLineService {
 	 */
 	@Override
 	public List<Chorus> listar(Usuario usuario) throws Exception {
-//		validar(usuario);
-		Chorus chorus = new Chorus();
-		chorus.setMensagem("Saindo da aula de XP");
-		usuario = new Usuario("Chorao");
-		chorus.setUsuario(usuario);
-		publicarNaTimeLine(chorus);
-		
-		List<Chorus> chorinhos = mapChorusByUser.get(usuario);
-		return chorinhos;
+		return dao.loadByUser(usuario);
 	}
 
 }

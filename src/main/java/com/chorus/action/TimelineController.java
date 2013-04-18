@@ -11,13 +11,10 @@ import com.chorus.service.TimeLineService;
 @Resource
 public class TimelineController {
 
-	private Result			result;
+	private Result result;
 
 	private TimeLineService	service;
 
-	/**
- * 
- */
 	public TimelineController(TimeLineService	service, Result result) {
 		this.service = service;
 		this.result = result;
