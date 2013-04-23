@@ -1,14 +1,8 @@
-/*
- * Copyright 2012 Sagarana Tech.  All rigths reserved.
- *
- * This software is the confidential and proprietary information of
- * Sagarana Tech ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the
- * terms of the license agreement you entered into with Sagarana Tech.
- */
 package com.chorus.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import br.com.caelum.vraptor.ioc.Component;
 
@@ -16,14 +10,6 @@ import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
-/**
- * 
- * @author kete@sagaranatech.com
- * @since Apr 15, 2013
- * @version $Revision:  $ <br>
- *          $Date:  $ <br> 
- *          $Author:  $
- */
 @Component
 public class TimeLineServiceImpl implements TimeLineService {
 	
@@ -46,23 +32,22 @@ public class TimeLineServiceImpl implements TimeLineService {
 		
 		String mensagem = chorus.getMensagem();
 		
-/*		if(mensagem == null || mensagem.isEmpty()){
+		if(mensagem == null || mensagem.isEmpty()){
 			throw new Exception("Mensagem nao pode ser vazia.");
 		}
 
 		if(mensagem.length() > 144){
 			throw new Exception("Mensagem nao pode exceder 144 caracteres.");
-		}*/
+		}
 		
-/*		List<Chorus> chorinhos = mapChorusByUser.get(usuario);
+		List<Chorus> chorinhos = null; //mapChorusByUser.get(usuario);
 		if(chorinhos == null){
 			chorinhos = new ArrayList<Chorus>();
 		}
 		
 
 		chorinhos.add(chorus);
-		mapChorusByUser.put(usuario, chorinhos);*/
-		this.dao.add(chorus);
+		//mapChorusByUser.put(usuario, chorinhos);
 		return chorus;
 	}
 
@@ -80,6 +65,22 @@ public class TimeLineServiceImpl implements TimeLineService {
 	@Override
 	public List<Chorus> listar(Usuario usuario) throws Exception {
 		return dao.loadByUser(usuario);
+	}
+	
+	private List<Chorus> listarAll() {
+		List<Chorus> all = new ArrayList<Chorus>();
+		
+		Set<Usuario> keySet = null; //mapChorusByUser.keySet();
+		for (Usuario usuario : keySet) {
+			all.addAll(null); //mapChorusByUser.get(usuario));
+		}
+		return all;
+	}
+
+
+	@Override
+	public List<Chorus> loadAll() {
+		return dao.loadAll();
 	}
 
 }

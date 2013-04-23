@@ -29,5 +29,10 @@ public interface TimeLineService {
 	 */
 	List<Chorus> listar(Usuario usuario) throws Exception;
 	
+	/**
+	 * 
+	 * @return all chorus
+	 */
+	List<Chorus> loadAll();
 
 }

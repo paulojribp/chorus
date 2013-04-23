@@ -20,10 +20,9 @@ public class TimelineController {
 		this.result = result;
 	}
 
-	@Path("/publicar")
-	public Chorus publicar(Chorus chorus) throws Exception {
-		return service.publicarNaTimeLine(chorus);
-
+	public void publicar(Chorus chorus) throws Exception {
+		result.include(service.publicarNaTimeLine(chorus));
+		result.redirectTo(TimelineController.class).listarAll();
 	}
 
 	@Path("/listar/{usuario.login}")
@@ -32,6 +31,6 @@ public class TimelineController {
 	}
 
 	public void listarAll() throws Exception {
-		result.include("chorinhos", service.listar(null));
+		result.include("chorinhos", service.loadAll());
 	}
 }

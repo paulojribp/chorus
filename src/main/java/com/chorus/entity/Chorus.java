@@ -1,12 +1,7 @@
-/*
- * Copyright 2012 Sagarana Tech.  All rigths reserved.
- *
- * This software is the confidential and proprietary information of
- * Sagarana Tech ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the
- * terms of the license agreement you entered into with Sagarana Tech.
- */
 package com.chorus.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * 
@@ -16,10 +11,14 @@ package com.chorus.entity;
  *          $Date: $ <br>
  *          $Author: $
  */
+@Entity
 public class Chorus {
 
+	@Id
 	private Integer	id;
+	
 	private String	mensagem;
+	
 	private Usuario	usuario;
 
 	public Integer getId() {

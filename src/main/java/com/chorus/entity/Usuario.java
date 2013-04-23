@@ -1,14 +1,9 @@
-/*
- * Copyright 2012 Sagarana Tech.  All rigths reserved.
- *
- * This software is the confidential and proprietary information of
- * Sagarana Tech ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the
- * terms of the license agreement you entered into with Sagarana Tech.
- */
 package com.chorus.entity;
 
 import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * 
@@ -18,13 +13,18 @@ import java.io.Serializable;
  *          $Date: $ <br>
  *          $Author: $
  */
+@Entity
 public class Usuario implements Serializable{
 
 	private static final long	serialVersionUID	= -1025205414857764041L;
 
+	@Id
 	private Integer	id;
+	
 	private String	login;
+	
 	private String	senha;
+	
 	private String	email;
 
 	public Usuario(){}

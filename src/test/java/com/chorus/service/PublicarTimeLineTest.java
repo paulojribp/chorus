@@ -12,6 +12,7 @@ package com.chorus.service;
 import static junit.framework.Assert.*;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.chorus.entity.Chorus;
@@ -25,14 +26,16 @@ import com.chorus.entity.Usuario;
  *          $Date: $ <br>
  *          $Author: $
  */
+@Ignore
 public class PublicarTimeLineTest {
 
 	private static TimeLineService	service;
 
 	@BeforeClass
-	/*public static void beforeClass() {
-		service = new TimeLineServiceImpl();
-	}*/
+	public static void beforeClass() {
+		
+//		service = new TimeLineServiceImpl();
+	}
 
 	
 	@Test(expected = Exception.class)
