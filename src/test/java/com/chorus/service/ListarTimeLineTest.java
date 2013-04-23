@@ -17,7 +17,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
@@ -48,7 +47,7 @@ public class ListarTimeLineTest {
 	@Test(expected=Exception.class)
 	public void listarComUsuarioQueNaoTemChorus() throws Exception {
 		Usuario usuario = new Usuario();
-		usuario.setLogin("Chorao");
+		usuario.setUsername("Chorao");
 		List<Chorus> chorinhos = service.listar(usuario);
 		assertEquals(0, chorinhos.size());
 	}
@@ -56,7 +55,7 @@ public class ListarTimeLineTest {
 	@Test
 	public void listarChorusUsuarioQueTemCincoMensagens() throws Exception {
 		Usuario usuario = new Usuario();
-		usuario.setLogin("Chorao");
+		usuario.setUsername("Chorao");
 		int quant = 5;
 		publicarMensagens(usuario, quant);
 		List<Chorus> chorinhos = service.listar(usuario);
@@ -69,7 +68,7 @@ public class ListarTimeLineTest {
 		while (i < quant){
 			Chorus chorus = new Chorus();
 			chorus.setUsuario(usuario);
-			chorus.setMensagem("Mensagem do "+ usuario.getLogin() + " "+ quant);
+			chorus.setMensagem("Mensagem do "+ usuario.getUsername() + " "+ quant);
 			service.publicarNaTimeLine(chorus);
 			i++;
 		}

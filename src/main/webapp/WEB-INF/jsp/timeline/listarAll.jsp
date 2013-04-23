@@ -84,7 +84,7 @@
 								      <img class="media-object" data-src="../images/thumb64x64.png">
 								    </a>
 								    <div class="media-body">
-								    	<h4 class="media-heading">${chorus.usuario.login}</h4>
+								    	<h4 class="media-heading">${chorus.usuario.username}</h4>
 								    	<p>${chorus.mensagem}</p>
 								    </div>
 								  </li>
@@ -107,7 +107,7 @@
 				    <h3 id="myModalLabel">Escrevendo chorinho</h3>
 				  </div>
 				  <div class="modal-body">
-				    <p>Nome<input class="input-block-level" id="nome" name ="chorus.usuario.login"></input></p>
+				    <p>Nome<input class="input-block-level" id="nome" name ="chorus.usuario.username"></input></p>
 				  </div>
 				  <div class="modal-body">
 				    <p>Chorus<textarea rows="3" class="input-block-level" id="chorinho" name="chorus.mensagem"></textarea></p>

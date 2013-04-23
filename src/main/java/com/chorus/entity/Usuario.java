@@ -2,16 +2,16 @@ package com.chorus.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  * 
  * @author kete@sagaranatech.com
- * @since Apr 15, 2013
- * @version $Revision: $ <br>
- *          $Date: $ <br>
- *          $Author: $
  */
 @Entity
 public class Usuario implements Serializable{
@@ -19,17 +19,21 @@ public class Usuario implements Serializable{
 	private static final long	serialVersionUID	= -1025205414857764041L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_SEQ")
+	@SequenceGenerator(name="USUARIO_SEQ", sequenceName="USUARIO_SEQ", allocationSize=1)
 	private Integer	id;
+
+	@Column(unique=true)
+	private String username;
 	
-	private String	login;
+	private String senha;
 	
-	private String	senha;
-	
-	private String	email;
+	private String email;
 
 	public Usuario(){}
-	public Usuario(String login){
-		this.login = login;
+	
+	public Usuario(String username){
+		this.username = username;
 	}
 	
 	public Integer getId() {
@@ -40,12 +44,12 @@ public class Usuario implements Serializable{
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getSenha() {
@@ -65,6 +69,6 @@ public class Usuario implements Serializable{
 	}
 
 	public boolean isValido(){
-		return (login != null && !login.isEmpty());
+		return (username != null && !username.isEmpty());
 	}
 }

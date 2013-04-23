@@ -51,7 +51,7 @@ public class PublicarTimeLineTest {
 	public void publicarNaTimeLineComUsuarioValido() throws Exception {
 		Chorus chorus = new Chorus();
 		Usuario usuario = new Usuario();
-		usuario.setLogin("Chorao");
+		usuario.setUsername("Chorao");
 		chorus.setUsuario(usuario);
 		chorus.setMensagem("In above example, the divisionWithException() method will throw an ArithmeticException Exception, since this is an expected exception.");
 		Chorus publicado = service.publicarNaTimeLine(chorus);
@@ -62,7 +62,7 @@ public class PublicarTimeLineTest {
 	public void publicarNaTimeLineComMensagemVazia() throws Exception {
 		Chorus chorus = new Chorus();
 		Usuario usuario = new Usuario();
-		usuario.setLogin("Chorao");
+		usuario.setUsername("Chorao");
 		chorus.setUsuario(usuario);
 		Chorus publicado = service.publicarNaTimeLine(chorus);
 		assertEquals(publicado, chorus);
@@ -72,7 +72,7 @@ public class PublicarTimeLineTest {
 	public void publicarNaTimeLineComMensagemMaiorQue144() throws Exception {
 		Chorus chorus = new Chorus();
 		Usuario usuario = new Usuario();
-		usuario.setLogin("Chorao");
+		usuario.setUsername("Chorao");
 		chorus.setUsuario(usuario);
 		chorus.setMensagem("In above example, the divisionWithException() method will throw an ArithmeticException Exception, since this is an expected exception, so the unit test will pass.");
 		Chorus publicado = service.publicarNaTimeLine(chorus);

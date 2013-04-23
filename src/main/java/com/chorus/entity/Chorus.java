@@ -1,20 +1,21 @@
 package com.chorus.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  * 
  * @author kete@sagaranatech.com
- * @since Apr 15, 2013
- * @version $Revision: $ <br>
- *          $Date: $ <br>
- *          $Author: $
  */
 @Entity
 public class Chorus {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CHORUS_SEQ")
+	@SequenceGenerator(name="CHORUS_SEQ", sequenceName="CHORUS_SEQ", allocationSize=1)
 	private Integer	id;
 	
 	private String	mensagem;
