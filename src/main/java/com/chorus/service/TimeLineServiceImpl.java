@@ -47,6 +47,7 @@ public class TimeLineServiceImpl implements TimeLineService {
 		
 
 		chorinhos.add(chorus);
+		this.dao.add(chorus);
 		//mapChorusByUser.put(usuario, chorinhos);
 		return chorus;
 	}
