@@ -12,7 +12,7 @@ import com.chorus.entity.Usuario;
 
 @Component
 public class UsuarioDao extends GenericDao<Usuario>{
-	
+
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}

@@ -5,45 +5,53 @@ import java.util.List;
 import br.com.caelum.vraptor.ioc.Component;
 
 import com.chorus.dao.UsuarioDao;
+import com.chorus.dto.UsuarioDto;
 import com.chorus.entity.Usuario;
+import com.chorus.exceptions.UsuarioConfirmacaoSenhaException;
+import com.chorus.exceptions.UsuarioEmailInvalidoException;
+import com.chorus.exceptions.UsuarioJaExisteException;
+import com.chorus.exceptions.UsuarioSenhaInvalidaException;
+import com.chorus.exceptions.UsuarioUsernameInvalidoException;
 
 @Component
 public class UsuarioServiceImpl implements UsuarioService {
 
-	public UsuarioServiceImpl() {
-
+	private UsuarioDao dao;
+	
+	public UsuarioServiceImpl(UsuarioDao usuarioDao) {
+		dao = usuarioDao;
 	}
 
-	
-	
-	
-	private UsuarioDao dao;
-
-	private void validar(Usuario usuario) throws Exception {
-		Usuario userExists = new Usuario();
-		if (usuario == null || !usuario.isValido()) {
-			throw new Exception("Usuario nao encontrado.");
+	private void validar(UsuarioDto usuario) throws Exception {
+		Usuario userToSave = usuario.getUsuario();
+		
+		if (userToSave.getSenha() == null || userToSave.getSenha().length() < 6) {
+			throw new UsuarioSenhaInvalidaException("Senha deve ser maior que 6 caracteres");
 		}
-		if (usuario.getSenha().length() < 6) {
-			throw new Exception("Senha deve ser maior que 6");
+		if (!usuario.getSenha().equals(usuario.getConfirmaSenha())) {
+			throw new UsuarioConfirmacaoSenhaException("A confirmação de senha é inválida");
 		}
-		if (usuario.getLogin() == null) {
-			throw new Exception("Login nao pode ser nulo");
+		if (userToSave == null || !userToSave.isValido()) {
+			throw new UsuarioUsernameInvalidoException("Usuário não é válido.");
 		}
-		if (usuario.getEmail() == null) {
-			throw new Exception("Email nao pode ser nulo");
+		if (userToSave.getUsername() == null) {
+			throw new UsuarioUsernameInvalidoException("Username não pode ser nulo");
 		}
-		if(dao.findByUsuario(usuario).get(0).getLogin().equals(userExists.getLogin())){
-			throw new Exception("Usuario já existe");
+		if (userToSave.getEmail() == null) {
+			throw new UsuarioEmailInvalidoException("Email não pode ser nulo");
+		}
+		
+		List<Usuario> users = dao.findByUsuario(userToSave);
+		if(users != null && !users.isEmpty()){
+			throw new UsuarioJaExisteException("Usuario já existe");
 		}	
-
 	}
 
 	@Override
-	public String salvarUsuario(Usuario usuario) throws Exception {
+	public String salvar(UsuarioDto usuario) throws Exception {
 		validar(usuario);
-		dao.create(usuario);
-		return dao.findByUsuario(usuario).get(0).getLogin();
+		dao.create(usuario.getUsuario());
+		return usuario.getUsername();
 	}
 
 	@Override

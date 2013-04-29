@@ -1,54 +1,77 @@
 package com.chorus.service;
 
-import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
-import com.chorus.entity.Usuario;
+import com.chorus.dao.UsuarioDao;
+import com.chorus.dto.UsuarioDto;
+import com.chorus.exceptions.UsuarioConfirmacaoSenhaException;
+import com.chorus.exceptions.UsuarioEmailInvalidoException;
+import com.chorus.exceptions.UsuarioSenhaInvalidaException;
+import com.chorus.exceptions.UsuarioUsernameInvalidoException;
 
 public class SalvarUsuarioTest {
-	private static UsuarioService service;
+	
+	private UsuarioService service;
+	private UsuarioDao usuarioDao;
 
-	@BeforeClass
-	public static void beforeClass() {
-		service = new UsuarioServiceImpl();
+	@Before
+	public void beforeClass() {
+		usuarioDao = mock(UsuarioDao.class);
+		service = new UsuarioServiceImpl(usuarioDao);
+	}
+	
+	private UsuarioDto getUsuarioExemplo() {
+		UsuarioDto usuario = new UsuarioDto();
+		usuario.setUsername("username");
+		usuario.setSenha("senha6");
+		usuario.setConfirmaSenha("senha6");
+		usuario.setEmail("maluco@beleza.com");
+		
+		return usuario;
 	}
 
-	@Test(expected = Exception.class)
+	@Test(expected = UsuarioUsernameInvalidoException.class)
 	public void salvarUsuarioComLoginNull() throws Exception {
-
-		Usuario usuario = new Usuario();
-		usuario.setLogin(null);
-//		Usuario salvo = service.salvarUsuario(usuario);
-//		assertEquals(salvo, usuario);
+		UsuarioDto usuario = getUsuarioExemplo();
+		usuario.setUsername(null);
+		
+		service.salvar(usuario);
 	}
 
-	@Test(expected = Exception.class)
+	@Test(expected = UsuarioSenhaInvalidaException.class)
 	public void salvarUsuarioComSenhaNull() throws Exception {
-
-		Usuario usuario = new Usuario();
+		UsuarioDto usuario = getUsuarioExemplo();
 		usuario.setSenha(null);
-//		Usuario salvo = service.salvarUsuario(usuario);
-//		assertEquals(salvo, usuario);
+		
+		service.salvar(usuario);
 	}
 
-	@Test(expected = Exception.class)
+	@Test(expected = UsuarioConfirmacaoSenhaException.class)
+	public void salvarUsuarioComConfirmacaoSenhaInvalida() throws Exception {
+		UsuarioDto usuario = getUsuarioExemplo();
+		usuario.setSenha("senha6");
+		usuario.setConfirmaSenha("ssssss");
+		
+		service.salvar(usuario);
+	}
+	
+	@Test(expected = UsuarioEmailInvalidoException.class)
 	public void salvarUsuarioComEmailNull() throws Exception {
-
-		Usuario usuario = new Usuario();
+		UsuarioDto usuario = getUsuarioExemplo();
 		usuario.setEmail(null);
-//		Usuario salvo = service.salvarUsuario(usuario);
-//		assertEquals(salvo, usuario);
+		
+		service.salvar(usuario);
 	}
 
-	@Test(expected = Exception.class)
+	@Test(expected = UsuarioSenhaInvalidaException.class)
 	public void salvarUsuarioComSenhaMenorQSeis() throws Exception {
-
-		Usuario usuario = new Usuario();
+		UsuarioDto usuario = getUsuarioExemplo();
 		usuario.setSenha("1234");
-//		Usuario salvo = service.salvarUsuario(usuario);
-//		assertEquals(salvo, usuario);
+		
+		service.salvar(usuario);
 	}
 
 }
