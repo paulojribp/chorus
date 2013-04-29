@@ -30,9 +30,6 @@ public class Usuario implements Serializable{
 	
 	private String email;
 
-	private String login;
-	
-	
 	public Usuario(){}
 	
 	public Usuario(String username){
@@ -75,11 +72,4 @@ public class Usuario implements Serializable{
 		return (username != null && !username.isEmpty());
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
 }
