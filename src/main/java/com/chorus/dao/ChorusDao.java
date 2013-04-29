@@ -13,9 +13,9 @@ import com.chorus.entity.Usuario;
 public class ChorusDao extends GenericDao<Chorus> {
 
 	public List<Chorus> findByUsuario(Usuario usuario) {
-		String sql = "select c from Chorus c inner join fetch c.usuario where c.usuario.login = ?";
+		String sql = "select c from Chorus c inner join fetch c.usuario where c.usuario.username = ?";
 		Query q = entityManager.createQuery(sql);
-		q.setParameter(1, usuario.getLogin());
+		q.setParameter(1, usuario.getUsername());
 		
 		return q.getResultList();
 	}
