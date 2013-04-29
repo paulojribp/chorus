@@ -13,11 +13,15 @@ import com.chorus.entity.Usuario;
 public class ChorusDao extends GenericDao<Chorus> {
 
 	public List<Chorus> findByUsuario(Usuario usuario) {
-		String sql = "select chorus from Chorus chorus inner join chorus.usuario user where user.username = ?";
+		String sql = "select c from Chorus c inner join fetch c.usuario where c.usuario.login = ?";
 		Query q = entityManager.createQuery(sql);
-		q.setParameter(1, usuario.getUsername());
+		q.setParameter(1, usuario.getLogin());
 		
 		return q.getResultList();
+	}
+	
+	public List<Chorus> loadAll() {
+		return entityManager.createQuery("from Chorus").getResultList();
 	}
 	
 }

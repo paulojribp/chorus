@@ -2,10 +2,10 @@ package com.chorus.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import br.com.caelum.vraptor.ioc.Component;
 
+import com.chorus.dao.ChorusDao;
 import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
@@ -14,9 +14,11 @@ import com.chorus.entity.Usuario;
 public class TimeLineServiceImpl implements TimeLineService {
 	
 	private TimelineDao dao;
+	private ChorusDao chorusDao;
 	
-	public TimeLineServiceImpl(TimelineDao dao) {
+	public TimeLineServiceImpl(TimelineDao dao, ChorusDao chorusDao) {
 		this.dao = dao;
+		this.chorusDao = chorusDao;
 	}
 
 	
@@ -67,21 +69,11 @@ public class TimeLineServiceImpl implements TimeLineService {
 	public List<Chorus> listar(Usuario usuario) throws Exception {
 		return dao.loadByUser(usuario);
 	}
-	
-	private List<Chorus> listarAll() {
-		List<Chorus> all = new ArrayList<Chorus>();
-		
-		Set<Usuario> keySet = null; //mapChorusByUser.keySet();
-		for (Usuario usuario : keySet) {
-			all.addAll(null); //mapChorusByUser.get(usuario));
-		}
-		return all;
-	}
 
 
 	@Override
 	public List<Chorus> loadAll() {
-		return dao.loadAll();
+		return chorusDao.loadAll();
 	}
 
 }

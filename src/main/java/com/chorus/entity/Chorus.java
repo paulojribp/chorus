@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -20,6 +22,8 @@ public class Chorus {
 	
 	private String	mensagem;
 	
+	@ManyToOne
+	@JoinColumn(name = "usuarioid")
 	private Usuario	usuario;
 
 	public Integer getId() {
